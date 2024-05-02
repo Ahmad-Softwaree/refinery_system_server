@@ -11,7 +11,14 @@ export const getOils = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
+export const getAllOils = async (req, res) => {
+  try {
+    const data = await db("oil").select("name", "id");
+    return res.status(200).json({ data });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getOil = async (req, res) => {
   try {
     const data = await db("oil").where("id", req.params.id);

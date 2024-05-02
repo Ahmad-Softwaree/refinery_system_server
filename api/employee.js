@@ -29,6 +29,17 @@ export const getEmployees = async (req, res) => {
   }
 };
 
+export const getAllEmployees = async (req, res) => {
+  try {
+    const data = await db("user")
+      .where("role", "employee")
+      .select("name", "id");
+
+    return res.status(200).json({ data });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getEmployee = async (req, res) => {
   try {
     const data = await db("user")
@@ -39,14 +50,7 @@ export const getEmployee = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-export const addEmployee = async (req, res) => {
-  try {
-    let data = await db("user").insert(req.body);
-    return res.status(200).json({ data });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-};
+
 export const updateEmployee = async (req, res) => {
   try {
     let data = await db("user")

@@ -1,11 +1,20 @@
 import express from "express";
 import { body } from "express-validator";
 import { employeeMiddleware } from "../middleware/auth/employee.js";
-import { deleteOil, getOil, getOils, updateOil, addOil } from "../api/oil.js";
+import {
+  deleteOil,
+  getOil,
+  getOils,
+  updateOil,
+  addOil,
+  getAllOils,
+} from "../api/oil.js";
 
 const oilApp = express.Router();
 
 oilApp.get("/", employeeMiddleware, getOils);
+oilApp.get("/all", employeeMiddleware, getAllOils);
+
 oilApp.get("/:id", employeeMiddleware, getOil);
 oilApp.post(
   "/",

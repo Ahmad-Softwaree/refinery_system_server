@@ -5,7 +5,17 @@ export const getOrders = async (req, res) => {
   let pages = parseInt(req.query.pages);
   let offset = (pages - 1) * PAGINATION;
   try {
-    const data = await db("order").offset(offset).limit(PAGINATION);
+    const data = await db("order")
+      .join("oil", "order.oil_id", "=", "oil.id")
+      .select(
+        "order.amount_of_barel as amount_of_barel",
+        "order.id as order_id",
+        "order.price as price",
+        "order.location as location",
+        "oil.name as oil_name"
+      )
+      .offset(offset)
+      .limit(PAGINATION);
     return res.status(200).json({ data });
   } catch (error) {
     return res.status(500).json({ message: error.message });

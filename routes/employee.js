@@ -1,9 +1,9 @@
 import express from "express";
 import { body } from "express-validator";
-import { employeeMiddleware } from "../middleware/auth/employee.js";
+
 import {
-  addEmployee,
   deleteEmployee,
+  getAllEmployees,
   getEmployee,
   getEmployees,
   updateEmployee,
@@ -18,23 +18,10 @@ import { managerMiddleware } from "../middleware/auth/manager.js";
 const employeeApp = express.Router();
 
 employeeApp.get("/", managerMiddleware, getEmployees);
+employeeApp.get("/all", managerMiddleware, getAllEmployees);
+
 employeeApp.get("/:id", managerMiddleware, getEmployee);
-employeeApp.post(
-  "/",
-  managerMiddleware,
-  body("name").notEmpty(),
-  body("email").notEmpty().isEmail(),
-  body("password").notEmpty(),
-  body("phone").notEmpty(),
-  body("position").notEmpty(),
-  body("salary").notEmpty(),
-  body("age").notEmpty(),
-  body("gender").notEmpty(),
-  checkBody,
-  passwordValidation,
-  hashPassword,
-  addEmployee
-);
+
 employeeApp.put(
   "/:id",
   managerMiddleware,

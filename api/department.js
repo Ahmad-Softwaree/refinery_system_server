@@ -11,7 +11,14 @@ export const getDepartments = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
+export const getAllDepartments = async (req, res) => {
+  try {
+    const data = await db("department");
+    return res.status(200).json({ data });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getDepartment = async (req, res) => {
   try {
     const data = await db("department").where("id", req.params.id);

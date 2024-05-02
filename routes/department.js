@@ -4,6 +4,7 @@ import { managerMiddleware } from "../middleware/auth/manager.js";
 import {
   addDepartment,
   deleteDepartment,
+  getAllDepartments,
   getDepartment,
   getDepartments,
   updateDepartment,
@@ -17,6 +18,8 @@ import {
 const departmentApp = express.Router();
 
 departmentApp.get("/", managerMiddleware, getDepartments);
+departmentApp.get("/all", managerMiddleware, getAllDepartments);
+
 departmentApp.get("/:id", managerMiddleware, getDepartment);
 
 departmentApp.post(
