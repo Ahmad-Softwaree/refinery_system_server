@@ -24,6 +24,11 @@ authApp.post(
   body("email").notEmpty().isEmail(),
   body("password").notEmpty(),
   body("phone").notEmpty(),
+  body("age").notEmpty(),
+  body("salary").notEmpty(),
+  body("gender").notEmpty(),
+  body("dep_id").notEmpty(),
+
   checkBody,
   passwordValidation,
   hashPassword,

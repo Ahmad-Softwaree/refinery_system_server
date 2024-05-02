@@ -12,7 +12,9 @@ export const getOrders = async (req, res) => {
         "order.id as order_id",
         "order.price as price",
         "order.location as location",
-        "oil.name as oil_name"
+        "oil.name as oil_name",
+        "oil.price as oil_price",
+        "oil.id as oil_id"
       )
       .offset(offset)
       .limit(PAGINATION);

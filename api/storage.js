@@ -11,7 +11,8 @@ export const getStorages = async (req, res) => {
         "storage.quantity as quantity",
         "storage.id as storage_id",
         "storage.location as location",
-        "oil.name as oil_name"
+        "oil.name as oil_name",
+        "oil.id as oil_id"
       )
       .offset(offset)
       .limit(PAGINATION);
