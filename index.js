@@ -2,15 +2,14 @@ import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
 import authApp from "./routes/auth.js";
-import managerApp from "./routes/manager.js";
 import employeeApp from "./routes/employee.js";
-import petApp from "./routes/pet.js";
-import productApp from "./routes/product.js";
-import veterinaryApp from "./routes/veterinary.js";
-import clinicApp from "./routes/clinic.js";
-import customerApp from "./routes/customer.js";
-import shopApp from "./routes/shop.js";
 import configApp from "./routes/config.js";
+import departmentApp from "./routes/department.js";
+import oilApp from "./routes/oil.js";
+import storageApp from "./routes/storage.js";
+import orderApp from "./routes/order.js";
+import deliveryApp from "./routes/delivery.js";
+import machineApp from "./routes/machine.js";
 dotenv.config();
 
 const { PORT } = process.env;
@@ -25,15 +24,14 @@ app.use(
 );
 
 app.use("/api/auth", authApp);
-app.use("/api/manager", managerApp);
 app.use("/api/employee", employeeApp);
-app.use("/api/veterinary", veterinaryApp);
-app.use("/api/pet", petApp);
-app.use("/api/product", productApp);
-app.use("/api/clinic", clinicApp);
-app.use("/api/customer", customerApp);
-app.use("/api/shop", shopApp);
 app.use("/api/config", configApp);
+app.use("/api/department", departmentApp);
+app.use("/api/oil", oilApp);
+app.use("/api/storage", storageApp);
+app.use("/api/order", orderApp);
+app.use("/api/delivery", deliveryApp);
+app.use("/api/machine", machineApp);
 
 app.listen(PORT, () => {
   console.log("Server Start...");

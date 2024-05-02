@@ -3,7 +3,7 @@ const { JWT_SECRET } = process.env;
 
 export const employeeMiddleware = async (req, res, next) => {
   try {
-    let roles = ["employee", "manager", "high_manager"];
+    let roles = ["employee", "manager"];
 
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];

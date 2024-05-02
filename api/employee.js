@@ -6,8 +6,21 @@ export const getEmployees = async (req, res) => {
   let offset = (pages - 1) * PAGINATION;
   try {
     const data = await db("user")
-      .orderBy("id", "asc")
       .where("role", "employee")
+      .join("department", "user.dep_id", "=", "department.id")
+      .select(
+        "department.name as dept_name",
+        "department.id as dept_id",
+        "user.name as user_name",
+        "user.email",
+        "user.id as user_id",
+        "user.position",
+        "user.salary",
+        "user.age",
+        "user.role",
+        "user.phone",
+        "user.gender"
+      )
       .offset(offset)
       .limit(PAGINATION);
     return res.status(200).json({ data });
@@ -26,14 +39,10 @@ export const getEmployee = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
-
-export const makeManager = async (req, res) => {
+export const addEmployee = async (req, res) => {
   try {
-    let data = await db("user")
-      .where("id", req.params.id)
-      .update({ role: "manager" });
-    data = await db("user").where("id", req.params.id);
-    return res.status(200).json({ data: data[0] });
+    let data = await db("user").insert(req.body);
+    return res.status(200).json({ data });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

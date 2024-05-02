@@ -7,11 +7,10 @@ import {
   passwordValidation,
 } from "../middleware/validation/validation.js";
 import { managerMiddleware } from "../middleware/auth/manager.js";
-import { highManagerMiddleware } from "../middleware/auth/highManager.js";
-import { allMiddleware } from "../middleware/auth/all.js";
+import { employeeMiddleware } from "../middleware/auth/employee.js";
 const authApp = express.Router();
 
-authApp.get("/auth", allMiddleware, getAuth);
+authApp.get("/auth", employeeMiddleware, getAuth);
 authApp.post(
   "/login",
   body("email").notEmpty().isEmail(),
@@ -28,7 +27,7 @@ authApp.post(
   checkBody,
   passwordValidation,
   hashPassword,
-  highManagerMiddleware,
+  managerMiddleware,
   register
 );
 

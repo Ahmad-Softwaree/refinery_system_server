@@ -4,20 +4,17 @@
  */
 import { faker } from "@faker-js/faker";
 
-const pets = Array.from({ length: 30 }, () => ({
+const data = Array.from({ length: 100 }, () => ({
   name: faker.internet.displayName(),
-  breed: faker.internet.displayName(),
-  color: faker.internet.color(),
+  amount_in_barel: faker.number.int({ max: 100 }),
   price: faker.number.int({ max: 10000 }),
-  age: faker.number.int({ max: 100000 }),
-  gender: "male",
   created_at: new Date(),
   updated_at: new Date(),
 }));
 
 const seed = async function (knex) {
-  await knex("pet").del();
-  await knex("pet").insert(pets);
+  await knex("oil").del();
+  await knex("oil").insert(data);
 };
 
 export { seed };

@@ -3,7 +3,8 @@ const { JWT_SECRET } = process.env;
 
 export const managerMiddleware = async (req, res, next) => {
   try {
-    let roles = ["manager", "high_manager"];
+    let roles = ["manager"];
+
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
     if (token === null) return res.status(401).json({ message: "no token" });
